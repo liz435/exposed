@@ -1,18 +1,17 @@
 import React, { useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import css from "./three/three.module.css"
+import Home from './home'
 
-
-function Box(props) {
+function Torus(props) {
   // This reference will give us direct access to the mesh
   const meshRef = useRef()
   // Set up state for the hovered and active state
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
   // Subscribe this component to the render-loop, rotate the mesh every frame
-  useFrame((state, delta) => (meshRef.current.rotation.x += delta))
+  useFrame((state, delta) => (meshRef.current.rotation.x += delta*0.3))
   // Return view, these are regular three.js elements expressed in JSX
   return (
     <mesh
@@ -22,9 +21,10 @@ function Box(props) {
       onClick={(event) => setActive(!active)}
       onPointerOver={(event) => setHover(true)}
       onPointerOut={(event) => setHover(false)}>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
+      <torusKnotGeometry args={[12, 2, 1024, 11,1, 1]} />
+      <meshStandardMaterial color={'orange'} />
     </mesh>
+
   )
 }
 
@@ -32,12 +32,15 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
+    <div className={css.canvas_container}>
+      <Home />
     <Canvas>
+    
     <ambientLight />
     <pointLight position={[10, 10, 10]} />
-    <Box position={[-1.2, 0, 0]} />
-    <Box position={[1.2, 0, 0]} />
+    <Torus position={[0,0,0]} />
   </Canvas>
+  </div>
   )
 }
 

@@ -1,0 +1,25 @@
+.title{
+    color: rgb(255, 255, 255);
+    z-index: 1;
+}
+.title_hovered{
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(174, 29, 0);
+    z-index: 2;
+}
+
+.titleDiv{
+    height: 10vh;
+    display: flex;
+    backdrop-filter: blur(1px);
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(22, 22, 181);
+    z-index: 2;
+    border: 1px solid rgb(255, 255, 255);
+}
+
+
