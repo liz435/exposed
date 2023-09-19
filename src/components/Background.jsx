@@ -21,6 +21,7 @@ export default function Background(props) {
     switch (e.target.value) {
       case "sphere":
         setShape("sphere");
+        
         break;
       case "rect":
         setShape("rect");
@@ -28,7 +29,7 @@ export default function Background(props) {
       case "torus":
         setShape("torus");
         break;
-    }
+      }
   }
 
   return (
@@ -43,6 +44,9 @@ export default function Background(props) {
       </button>
       <button onClick={handleChangeShape} value={"torus"}>
         torus
+      </button>
+      <button onClick={handleChangeShape} value={"cone"}>
+        cone
       </button>
       <Canvas>
         <ambientLight />

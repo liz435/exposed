@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 
-export default function Torus({ speed, shape, ...props }) {
+export default function Torus({ speed, shape, position, ...props }) {
   const meshRef = useRef(null);
 
   const [hovered, setHover] = useState(false);
@@ -9,6 +9,12 @@ export default function Torus({ speed, shape, ...props }) {
 
   useFrame((_, delta) => {
     meshRef.current.rotation.x += delta * (speed || 1);
+    //animation position of the torus
+    if(active){
+      meshRef.current.position.x += delta * (speed || 1);
+    }
+
+
   });
 
   let geometry = <torusKnotGeometry args={[12, 2, 1024, 11, 1, 1]} />;
@@ -23,18 +29,20 @@ export default function Torus({ speed, shape, ...props }) {
 
   console.log(speed)
 
+
   return (
     <mesh
       {...props}
-      position={[0, 0, 0]}
+      position={[0,0,0]}
       ref={meshRef}
-      scale={active ? 1.5 : 1}
+      // scale={active ? 1.5 : 1}
       onClick={(event) => setActive(!active)}
       onPointerOver={(event) => setHover(true)}
       onPointerOut={(event) => setHover(false)}
     >
+      
         {geometry}
-      <meshStandardMaterial color={"orange"} />
+      <meshStandardMaterial color={"cyan"} />
     </mesh>
   );
 }

@@ -22,6 +22,7 @@ function Home() {
         onClick={()=> setClicked(true)}
         className={style}
       >
+      
         <h1 className={s.title}> {text}</h1>
         
       </div>
